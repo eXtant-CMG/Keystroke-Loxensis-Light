@@ -1,7 +1,36 @@
+// Detect project root automatically
+function getSiteRoot() {
+  const { origin, pathname } = window.location;
+
+  // If running locally → just use origin
+  if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+    return origin + '/';
+  }
+
+  // Split path: ["", "repo-name", "html", "page.html"]
+  const parts = pathname.split('/').filter(Boolean);
+
+  // If first part looks like a repo (GitHub project site)
+  if (parts.length > 0 && !parts[0].includes('.')) {
+    return `${origin}/${parts[0]}/`;
+  }
+
+  // Otherwise it's a user site
+  return origin + '/';
+}
+
+const SITE_ROOT = getSiteRoot();
+
+// Helper to build URLs safely
+function root(path) {
+  return new URL(path, SITE_ROOT).href;
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const nav = document.getElementById("navList");
 
-  fetch("/Keystroke-Loxensis-Light/authors.json")
+  fetch(root("authors.json"))
     .then(response => response.json())
     .then(data => {
 
@@ -35,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
           a.textContent = author.name;
 
           if (author.sessions && author.sessions.length > 0) {
-            a.href = `/Keystroke-Loxensis-Light/html/processviewer.html?process=${author.sessions[0].link}`;
+            a.href = root(`html/processviewer.html?process=${author.sessions[0].link}`);
           }
 
           li.appendChild(a);
@@ -75,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const aboutLink = document.createElement("a");
         aboutLink.className = "dropdown-item";
         aboutLink.textContent = `About ${author.name}`;
-        aboutLink.href = `/Keystroke-Loxensis-Light/html/about.html?author=${encodeURIComponent(author.path)}`;
+        aboutLink.href = root(`html/about.html?author=${encodeURIComponent(author.path)}`);
 
         aboutLi.appendChild(aboutLink);
         dropdownMenu.appendChild(aboutLi);
@@ -93,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const sessionLink = document.createElement("a");
           sessionLink.className = "dropdown-item";
           sessionLink.textContent = session.name;
-          sessionLink.href = `/Keystroke-Loxensis-Light/html/processviewer.html?process=${session.link}`;
+          sessionLink.href = root(`html/processviewer.html?process=${session.link}`);
 
           if (session.link === processId) {
             sessionLink.classList.add("active");
@@ -121,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Stop script if container does not exist on this page
   if (!container) return;
 
-  fetch("/Keystroke-Loxensis-Light/authors.json")
+  fetch(root("authors.json"))
     .then(response => response.json())
     .then(items => {
 
@@ -141,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           const link = document.createElement("a");
           link.className = "process_link text-decoration-none";
-          link.href = `/Keystroke-Loxensis-Light/html/processviewer.html?process=${item.sessions[0].link}`;
+          link.href = root(`html/processviewer.html?process=${item.sessions[0].link}`);
 
           const h1 = document.createElement("h1");
           h1.textContent = item.name;
@@ -221,7 +250,7 @@ function createProcessNavigation(data) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("/Keystroke-Loxensis-Light/authors.json")
+  fetch(root("authors.json"))
     .then(res => res.json())
     .then(data => {
       createProcessNavigation(data);
