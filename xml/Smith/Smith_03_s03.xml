@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+      <TEI xmlns="http://www.tei-c.org/ns/1.0">
+          <teiHeader>
+              <fileDesc>
+                  <titleStmt>
+                      <title>Retyping Writing Life</title>
+                      <author>John Smith</author>
+                  </titleStmt>
+                  <publicationStmt>
+                      <p corresp="session">3</p>
+                      <p corresp="version">3</p>
+                      <p corresp="total_versions">3</p>
+                  </publicationStmt>
+                  <sourceDesc>
+                      <p>
+                          <l>24-02-2026</l>
+                          <l>10:31:38</l>
+                          <l>00:04:01</l>
+                      </p>
+                      <p>This example has been created by retyping the first paragraphs of Annie Dillard's The Writing Life (1989), it is only intended to serve as an example of the visualisations.</p>
+                      <p>Original text: Annie Dillard, <emph rend="italics">The Writing Life</emph> (1989)</p>
+                  </sourceDesc>
+              </fileDesc>
+          </teiHeader>
+          <text>
+              <body>
+                  <p source="keystrokes">When you write, you lay out a line of words. The line of words is a miner's pick, a woodcarver's gouge, a surgeon's probe. You wield it, and it digs a path you follow. Soon you find yourself deep in new territory. Is it a dead end, or have you located the real subject? You will know tomorrow, or this time next year.<lb/>
+                      You make the path boldly and follow it fearfully. You go where the path leads. At the end of the path, you find a box canyon. You hammer out reports, dispatch bulletins.<add seq="000000" type="nt" evidence="2"><lb/>
+                          The <del seq="000225" type="context" evidence="330">path</del><add seq="000226" type="context" evidence="331">writing</add> has changed<add seq="000231" type="context" evidence="339">, in your hands, and in a twinkling, from an expression of your notions to an epistemological tool</add>. </add><add seq="000009" type="nt" evidence="28">The new place intere<del seq="000015" type="typo" evidence="49">t</del></add><add seq="000015" type="nt|continue" evidence="50">sts you because <del seq="000027" type="pre-context" evidence="83">you don't know it</del></add><add seq="000030" type="nt|continue" evidence="100">it is not clear. </add><add seq="000037" type="nt" evidence="118">In your humility, you lay down the words carefully, <del seq="000050" type="pre-context" evidence="171">a</del></add><add seq="000050" type="nt|continue" evidence="172">watching all the angles. </add><add seq="000110" type="nt" evidence="198">Now the <add seq="000121" type="pre-context" evidence="225">earlier </add>writing looks soft</add><mod seq="000126" type="continue" evidence="234"> and careless. </mod><add seq="000137" type="nt" evidence="250"><del seq="000146" type="context" evidence="271">E</del><add seq="000146" type="context" evidence="273">Process is nothing; e</add>rase your <del seq="000141" type="typo" evidence="262">r</del></add><add seq="000141" type="nt|continue" evidence="263">tracks.</add><add seq="000154" type="nt" evidence="295"> The <del seq="000201" type="typo" evidence="302">a</del></add><add seq="000201" type="nt|continue" evidence="303">path is not the w<del seq="000207" type="typo" evidence="322">rk</del></add><add seq="000208" type="nt|continue" evidence="324">ork. </add><add seq="000320" type="nt" evidence="439"><add seq="000332" type="context" evidence="487">I hope your <del seq="000339" type="context" evidence="503">path</del></add><add seq="000340" type="context|continue" evidence="507">tracks have grown over; I hope birds ate the crumbs; </add>I hope you will toss it all and not look back.</add></p>
+              </body>
+          </text>
+      </TEI>
+      

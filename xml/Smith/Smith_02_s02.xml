@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+      <TEI xmlns="http://www.tei-c.org/ns/1.0">
+          <teiHeader>
+              <fileDesc>
+                  <titleStmt>
+                      <title>Retyping Writing Life</title>
+                      <author>John Smith</author>
+                  </titleStmt>
+                  <publicationStmt>
+                      <p corresp="session">2</p>
+                      <p corresp="version">2</p>
+                      <p corresp="total_versions">3</p>
+                  </publicationStmt>
+                  <sourceDesc>
+                      <p>
+                          <l>24-02-2026</l>
+                          <l>10:25:58</l>
+                          <l>00:02:23</l>
+                      </p>
+                      <p>This example has been created by retyping the first paragraphs of Annie Dillard's The Writing Life (1989), it is only intended to serve as an example of the visualisations.</p>
+                      <p>Original text: Annie Dillard, <emph rend="italics">The Writing Life</emph> (1989)</p>
+                  </sourceDesc>
+              </fileDesc>
+          </teiHeader>
+          <text>
+              <body>
+                  <p source="keystrokes">When you write, you lay out a line of words. The line of words is a miner's pick, a woodcarver's gouge, a surgeon's probe. You wield it, and it digs a path you follow. Soon you find yourself deep in new territory. Is it a dead end, or have you located the real subject? You will know tomorrow, or this time next year.<add seq="000000" type="nt" evidence="2"><lb/><add seq="000030" type="nt" evidence="42">You make the path boldly<add seq="000206" type="context" evidence="213"> and follow it fearfully</add>. </add>You go where the <del seq="000051" type="context" evidence="70">writing takes you</del><add seq="000054" type="context" evidence="88"> path leads</add>.</add><add seq="000105" type="nt" evidence="100"> At the end of the path, you find a <del seq="000128" type="pre-context" evidence="143">canyon</del></add><add seq="000129" type="nt|continue" evidence="149">box c<del seq="000222" type="typo" evidence="237">o</del><add seq="000223" type="context" evidence="238">a</add>nyon. </add><add seq="000141" type="nt" evidence="162">You hammer out re<del seq="000150" type="typo" evidence="181">op</del></add><add seq="000150" type="nt|continue" evidence="183">ports, dispat<del seq="000156" type="typo" evidence="197">h</del></add><add seq="000157" type="nt|continue" evidence="198">ch bulletins.</add><add seq="000205" type="context" evidence="212"> </add></p>
+              </body>
+          </text>
+      </TEI>
+      

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+      <TEI xmlns="http://www.tei-c.org/ns/1.0">
+          <teiHeader>
+              <fileDesc>
+                  <titleStmt>
+                      <title>Retyping Writing Life</title>
+                      <author>John Smith</author>
+                  </titleStmt>
+                  <publicationStmt>
+                      <p corresp="session">1</p>
+                      <p corresp="version">1</p>
+                      <p corresp="total_versions">3</p> 
+                  </publicationStmt>
+                  <sourceDesc>
+                      <p>
+                          <l>24-02-2026</l>
+                          <l>10:18:20</l>
+                          <l>00:02:57</l>
+                      </p>
+                      <p>This example has been created by retyping the first paragraphs of Annie Dillard's The Writing Life (1989), it is only intended to serve as an example of the visualisations.</p>
+                      <p>Original text: Annie Dillard, <emph rend="italics">The Writing Life</emph> (1989)</p>
+                  </sourceDesc>
+              </fileDesc>
+          </teiHeader>
+          <text>
+              <body>
+                  <p source="keystrokes"><add seq="000001" type="nt" evidence="3">When you write, you lay out a line of words. </add><add seq="000013" type="nt" evidence="49">The line of words is a <del seq="000019" type="typo" evidence="73">i</del></add><add seq="000019" type="nt|continue" evidence="74">miner's pick<add seq="000034" type="context" evidence="103">, a woodcarver's gouge, a surgeon's probe</add>. </add><add seq="000025" type="nt" evidence="89">You wield it,<mod seq="000052" type="continue" evidence="145"> and it digs a path you follow. </mod></add><add seq="000116" type="nt" evidence="178">Soon you find yourself deep in new territory. </add><add seq="000151" type="nt" evidence="225">Is it <del seq="000212" type="context" evidence="264">worth it</del><add seq="000214" type="context" evidence="272">a dead end</add><add seq="000239" type="context" evidence="323">, or have you located the real subject</add>?</add> <add seq="000200" type="nt" evidence="243">You will know <del seq="000224" type="context" evidence="283">later</del><add seq="000225" type="context" evidence="288">tomorrow, or this time ne<del seq="000233" type="typo" evidence="314">t</del></add><add seq="000234" type="context|continue" evidence="315">xt year</add>.</add></p>
+              </body>
+          </text>
+      </TEI>
+      
