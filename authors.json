@@ -10,5 +10,25 @@
         "link": "Doe_01_s01"
       }
     ]
+  },
+  {
+    "path": "Smith",
+    "name": "John Smith",
+    "title": "Retyping Writing Life",
+    "description": "This example has been created by retyping the first paragraphs of Annie Dillard's The Writing Life (1989), it is only intended to serve as an example of the visualisations.",
+    "sessions": [
+      {
+        "name": "Session 1",
+        "link": "Smith_01_s01"
+      },
+      {
+        "name": "Session 2",
+        "link": "Smith_02_s02"
+      },
+      {
+        "name": "Session 3",
+        "link": "Smith_03_s03"
+      }
+    ]
   }
 ]
