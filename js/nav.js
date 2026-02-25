@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const nav = document.getElementById("navList");
 
-  fetch("/authors.json")
+  fetch("authors.json")
     .then(response => response.json())
     .then(data => {
 
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
           a.textContent = author.name;
 
           if (author.sessions && author.sessions.length > 0) {
-            a.href = `/html/processviewer.html?process=${author.sessions[0].link}`;
+            a.href = `html/processviewer.html?process=${author.sessions[0].link}`;
           }
 
           li.appendChild(a);
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const aboutLink = document.createElement("a");
         aboutLink.className = "dropdown-item";
         aboutLink.textContent = `About ${author.name}`;
-        aboutLink.href = `/html/about.html?author=${encodeURIComponent(author.path)}`;
+        aboutLink.href = `html/about.html?author=${encodeURIComponent(author.path)}`;
 
         aboutLi.appendChild(aboutLink);
         dropdownMenu.appendChild(aboutLi);
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const sessionLink = document.createElement("a");
           sessionLink.className = "dropdown-item";
           sessionLink.textContent = session.name;
-          sessionLink.href = `/html/processviewer.html?process=${session.link}`;
+          sessionLink.href = `html/processviewer.html?process=${session.link}`;
 
           if (session.link === processId) {
             sessionLink.classList.add("active");
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Stop script if container does not exist on this page
   if (!container) return;
 
-  fetch("/authors.json")
+  fetch("authors.json")
     .then(response => response.json())
     .then(items => {
 
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           const link = document.createElement("a");
           link.className = "process_link text-decoration-none";
-          link.href = `/html/processviewer.html?process=${item.sessions[0].link}`;
+          link.href = `html/processviewer.html?process=${item.sessions[0].link}`;
 
           const h1 = document.createElement("h1");
           h1.textContent = item.name;
@@ -221,7 +221,7 @@ function createProcessNavigation(data) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("/authors.json")
+  fetch("authors.json")
     .then(res => res.json())
     .then(data => {
       createProcessNavigation(data);
