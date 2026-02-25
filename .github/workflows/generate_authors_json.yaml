@@ -3,7 +3,7 @@ name: Generate authors.json
 on:
   push:
     paths:
-      - ‘xml/**'  # Trigger only when files change in a specific directory
+      - 'xml/**'  # Trigger only when files change in a specific directory
     branches:
       - main  # Replace with the branch where users push changes
   workflow_dispatch:
