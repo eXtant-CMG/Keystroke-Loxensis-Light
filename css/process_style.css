@@ -1,0 +1,278 @@
+
+body {
+  font-family: 'Roboto Slab', sans-serif;
+}
+
+
+.sides {
+    background-image: url('../img/background-keystroke-loxensis.jpg');
+}
+
+
+.description {
+    padding: 10px;
+    margin-left: 20px;
+    height: 1500px;
+}
+
+.word {
+    font-family: "times new roman";
+    padding-bottom: 50px;
+    font-size: 120%;
+}
+
+nav {
+    background-color: rgba(173, 207, 230, 1);
+}
+.dropdown-item:active {
+  background-color:rgba(173, 207, 230, 0.3);
+}
+.dropdown-item:hover {
+  background-color:rgba(173, 207, 230, 0.3);
+}
+.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(58, 45, 8, 1);
+  border-radius: 5px;
+}
+
+.nav-link {
+    color:#3A2D08;
+}
+.navbar-brand  {
+  color:#3A2D08;
+}
+a:link { 
+    text-decoration: none; 
+} 
+
+a:visited { 
+    text-decoration: none; 
+} 
+
+a:active { 
+    text-decoration: none; 
+}
+
+.dropdown-item.active {
+      background-color:rgba(173, 207, 230, 0.1);
+      color:#3A2D08;
+}
+
+.options {
+  background-color: #302B27;
+  color: white;
+  text-align: center;
+}
+
+
+.button {
+  background-color: #F3F6F4;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  padding-left:15px;
+
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#jumpButton {
+  background-color: #302B27;
+  border: none;
+  border-radius: 8px;
+  color: #F3F6F4;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.btn {
+  background-color: #F3F6F4;
+}
+
+.next-session:hover {
+    color: white;
+}
+.prev-session:hover {
+    color: white;
+}
+
+/*style for text */
+
+p {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+
+}
+.indent {
+    margin-left: 5%;
+}
+
+.temporaryhide {
+    display:none;
+}
+
+.whiteline {
+ display:inline-block;
+ margin-top:15px;
+ margin-bottom:15px;
+ margin-left: -4px;
+}
+
+span.sup {
+ vertical-align: super;
+ font-size: 60%;
+ }
+ 
+span.sub {
+ vertical-align: sub;
+  font-size: 60%;
+ }
+ 
+.n {
+    display: none;
+}
+
+
+.nt {
+    color: #843371;
+    display: none;
+    quotes: none;
+}
+
+.rt {
+    color: #8B95C9;
+    display: none;
+    
+}
+
+.layout {
+    display: none;
+    
+}
+
+.src {
+    color: pink;
+    display: none;
+
+}
+
+.cont {
+    color: #ff9900;
+    display: none;
+    quotes: none;
+}
+
+
+.del.pre-context {
+    text-decoration: none;
+}
+
+.add.context {
+    color: #04724D;
+    display: none;
+}
+
+.add.pre-context {
+    color: #7FB069;
+    display: none;
+}
+
+.del.typo {
+    text-decoration: none;
+
+}
+.del.context {
+    text-decoration: none;
+
+}
+
+.add.typo {
+    color: #BE7C4D;
+    display: none;
+}
+
+
+.del.trans {
+
+    text-decoration: none;
+}
+.add.trans {
+    color: #377495;
+    display: none;
+}
+.add.focus {
+    color: #453539;
+    display: none;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 80%;
+}
+
+.symbol {
+  display: none;
+  font-style: normal;
+  font-size: 12px;
+}
+
+.thick {
+  font-weight: bold;
+}
+
+
+.thick-del {
+  font-weight: bold;
+  color: black;
+}
+
+.prev-session,
+.next-session {
+    color: white;
+    text-decoration: none;
+    font-size:24px;
+    cursor: pointer;
+    padding-top: 5px;
+}
+
+
+.hide {
+    visibility: hidden;
+}
+
+
+.line {
+	background-color: #D36135;
+	position: absolute;
+	height: 2px;
+	opacity: 1;
+}
+
+input {
+    margin: 7px;
+    padding: 2px;
+    width: 100%;
+        }
+
+.notes {
+    font-family: verdana, sans-serif;
+    color: black;
+    display: none;
+}
+
+.hiddennotes {
+    display: none;
+}
+
+#notesButton.hidden {
+    display: none !important;
+}

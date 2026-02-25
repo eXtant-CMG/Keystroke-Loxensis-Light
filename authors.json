@@ -1,0 +1,14 @@
+[
+  {
+    "path": "Doe",
+    "name": "Jane Doe",
+    "title": "Digital writing, forever",
+    "description": "This is an example of a keystroke-logged writing process to illustrate the use of Keystroke Loxensis Light. The writing process was logged with Inputlog.",
+    "sessions": [
+      {
+        "name": "Session 1",
+        "link": "Doe_01_s01"
+      }
+    ]
+  }
+]

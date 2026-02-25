@@ -1,0 +1,50 @@
+name: Generate authors.json
+
+on:
+  push:
+    paths:
+      - ‘xml/**'  # Trigger only when files change in a specific directory
+    branches:
+      - main  # Replace with the branch where users push changes
+  workflow_dispatch:
+
+jobs:
+  generate-authors_info: 
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install xxx  # If you use any library from python
+
+      - name: Run Python script
+        run: python build_authors_json.py 
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet authors.json; then
+            echo "No changes to commit"
+            echo "changed=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected"
+            echo "changed=true" >> $GITHUB_ENV
+          fi
+
+      - name: Commit and push changes
+        if: env.changed == 'true'
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add authors.json build_report.md
+          git commit -m "Auto-update authors.json and build report"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
