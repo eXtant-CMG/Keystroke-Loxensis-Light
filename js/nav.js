@@ -1,207 +1,162 @@
-// Detect project root automatically
 function getSiteRoot() {
   const { origin, pathname } = window.location;
-
-  // If running locally → just use origin
   if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
     return origin + '/';
   }
-
-  // Split path: ["", "repo-name", "html", "page.html"]
   const parts = pathname.split('/').filter(Boolean);
-
-  // If first part looks like a repo (GitHub project site)
   if (parts.length > 0 && !parts[0].includes('.')) {
     return `${origin}/${parts[0]}/`;
   }
-
-  // Otherwise it's a user site
   return origin + '/';
 }
 
 const SITE_ROOT = getSiteRoot();
 
-// Helper to build URLs safely
 function root(path) {
   return new URL(path, SITE_ROOT).href;
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
-  const nav = document.getElementById("navList");
 
   fetch(root("authors.json"))
     .then(response => response.json())
     .then(data => {
-
-      const currentPath = window.location.pathname;
-      const params = new URLSearchParams(window.location.search);
-
-      const isIndexPage =
-        currentPath.includes("index.html") ||
-        currentPath.endsWith("/");
-
-      const isAboutAuthorPage =
-        currentPath.includes("about.html");
-
-      const isAboutProjectPage =
-        currentPath.includes("about-main.html");
-
-      const isProcessPage =
-        currentPath.includes("processviewer.html");
-
-      // =====================================
-      // INDEX + ABOUT PAGES → SHOW AUTHORS
-      // =====================================
-      if (isIndexPage || isAboutAuthorPage || isAboutProjectPage) {
-
-        data.forEach(author => {
-          const li = document.createElement("li");
-          li.className = "nav-item";
-
-          const a = document.createElement("a");
-          a.className = "nav-link";
-          a.textContent = author.name;
-
-          if (author.sessions && author.sessions.length > 0) {
-            a.href = root(`html/processviewer.html?process=${author.sessions[0].link}`);
-          }
-
-          li.appendChild(a);
-          nav.appendChild(li);
-        });
-      }
-
-      // =====================================
-      // PROCESS VIEWER → AUTHOR DROPDOWN
-      // =====================================
-      if (isProcessPage) {
-
-        const processId = params.get("process");
-        if (!processId) return;
-
-        const author = data.find(a =>
-          a.sessions.some(s => s.link === processId)
-        );
-        if (!author) return;
-
-        const li = document.createElement("li");
-        li.className = "nav-item dropdown";
-
-        const toggle = document.createElement("a");
-        toggle.className = "nav-link dropdown-toggle";
-        toggle.href = "#";
-        toggle.role = "button";
-        toggle.setAttribute("data-bs-toggle", "dropdown");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.textContent = author.name;
-
-        const dropdownMenu = document.createElement("ul");
-        dropdownMenu.className = "dropdown-menu";
-
-        // About Author link
-        const aboutLi = document.createElement("li");
-        const aboutLink = document.createElement("a");
-        aboutLink.className = "dropdown-item";
-        aboutLink.textContent = `About ${author.name}`;
-        aboutLink.href = root(`html/about.html?author=${encodeURIComponent(author.path)}`);
-
-        aboutLi.appendChild(aboutLink);
-        dropdownMenu.appendChild(aboutLi);
-
-        // Divider
-        const divider = document.createElement("li");
-        divider.innerHTML = '<hr class="dropdown-divider">';
-        dropdownMenu.appendChild(divider);
-
-        // Sessions
-        author.sessions.forEach(session => {
-
-          const sessionLi = document.createElement("li");
-
-          const sessionLink = document.createElement("a");
-          sessionLink.className = "dropdown-item";
-          sessionLink.textContent = session.name;
-          sessionLink.href = root(`html/processviewer.html?process=${session.link}`);
-
-          if (session.link === processId) {
-            sessionLink.classList.add("active");
-          }
-
-          sessionLi.appendChild(sessionLink);
-          dropdownMenu.appendChild(sessionLi);
-        });
-
-        li.appendChild(toggle);
-        li.appendChild(dropdownMenu);
-        nav.appendChild(li);
-      }
-
+      buildNav(data);
+      buildProcessContainer(data);
+      createProcessNavigation(data);
     })
-    .catch(error => {
-      console.error("Navigation error:", error);
-    });
+    .catch(error => console.error("Error loading authors.json:", error));
+
 });
 
+function buildNav(data) {
+  const nav = document.getElementById("navList");
+  if (!nav) return;
 
-document.addEventListener("DOMContentLoaded", function () {
+  const currentPath = window.location.pathname;
+  const params = new URLSearchParams(window.location.search);
+
+  const isIndexPage = currentPath.includes("index.html") || currentPath.endsWith("/");
+  const isAboutAuthorPage = currentPath.includes("about.html");
+  const isAboutProjectPage = currentPath.includes("about-main.html");
+  const isProcessPage = currentPath.includes("processviewer.html");
+
+  if (isIndexPage || isAboutAuthorPage || isAboutProjectPage) {
+    data.forEach(author => {
+      const li = document.createElement("li");
+      li.className = "nav-item";
+
+      const a = document.createElement("a");
+      a.className = "nav-link";
+      a.textContent = author.name;
+
+      if (author.sessions && author.sessions.length > 0) {
+        a.href = root(`html/processviewer.html?process=${author.sessions[0].link}`);
+      }
+
+      li.appendChild(a);
+      nav.appendChild(li);
+    });
+  }
+
+  if (isProcessPage) {
+    const processId = params.get("process");
+    if (!processId) return;
+
+    const author = data.find(a => a.sessions.some(s => s.link === processId));
+    if (!author) return;
+
+    const li = document.createElement("li");
+    li.className = "nav-item dropdown";
+
+    const toggle = document.createElement("a");
+    toggle.className = "nav-link dropdown-toggle";
+    toggle.href = "#";
+    toggle.role = "button";
+    toggle.setAttribute("data-bs-toggle", "dropdown");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = author.name;
+
+    const dropdownMenu = document.createElement("ul");
+    dropdownMenu.className = "dropdown-menu";
+
+    const aboutLi = document.createElement("li");
+    const aboutLink = document.createElement("a");
+    aboutLink.className = "dropdown-item";
+    aboutLink.textContent = `About ${author.name}`;
+    aboutLink.href = root(`html/about.html?author=${encodeURIComponent(author.path)}`);
+    aboutLi.appendChild(aboutLink);
+    dropdownMenu.appendChild(aboutLi);
+
+    const divider = document.createElement("li");
+    divider.innerHTML = '<hr class="dropdown-divider">';
+    dropdownMenu.appendChild(divider);
+
+    author.sessions.forEach(session => {
+      const sessionLi = document.createElement("li");
+      const sessionLink = document.createElement("a");
+      sessionLink.className = "dropdown-item";
+      sessionLink.textContent = session.name;
+      sessionLink.href = root(`html/processviewer.html?process=${session.link}`);
+
+      if (session.link === processId) {
+        sessionLink.classList.add("active");
+      }
+
+      sessionLi.appendChild(sessionLink);
+      dropdownMenu.appendChild(sessionLi);
+    });
+
+    li.appendChild(toggle);
+    li.appendChild(dropdownMenu);
+    nav.appendChild(li);
+  }
+}
+
+function buildProcessContainer(data) {
   const container = document.getElementById("processContainer");
-
-  // Stop script if container does not exist on this page
   if (!container) return;
 
-  fetch(root("authors.json"))
-    .then(response => response.json())
-    .then(items => {
+  for (let i = 0; i < data.length; i += 2) {
+    const row = document.createElement("div");
+    row.className = "row justify-content-center mb-4";
 
-      for (let i = 0; i < items.length; i += 2) {
+    const pair = data.slice(i, i + 2);
 
-        const row = document.createElement("div");
-        row.className = "row justify-content-center mb-4";
+    pair.forEach(item => {
+      if (!item.sessions || item.sessions.length === 0) return;
 
-        const pair = items.slice(i, i + 2);
+      const col = document.createElement("div");
+      col.className = "col-12 col-md-5 writing_process mb-3";
 
-        pair.forEach(item => {
+      const link = document.createElement("a");
+      link.className = "process_link text-decoration-none";
+      link.href = root(`html/processviewer.html?process=${item.sessions[0].link}`);
 
-          if (!item.sessions || item.sessions.length === 0) return;
+      const h1 = document.createElement("h1");
+      h1.textContent = item.name;
 
-          const col = document.createElement("div");
-          col.className = "col-12 col-md-5 writing_process mb-3";
+      const p = document.createElement("p");
+      p.textContent = item.title || "";
 
-          const link = document.createElement("a");
-          link.className = "process_link text-decoration-none";
-          link.href = root(`html/processviewer.html?process=${item.sessions[0].link}`);
+      const arrow = document.createElement("span");
+      arrow.textContent = " →";
 
-          const h1 = document.createElement("h1");
-          h1.textContent = item.name;
+      link.appendChild(h1);
+      link.appendChild(p);
+      link.appendChild(arrow);
 
-          const p = document.createElement("p");
-          p.textContent = item.title || "";
-
-          const arrow = document.createElement("span");
-          arrow.textContent = " →";
-
-          link.appendChild(h1);
-          link.appendChild(p);
-          link.appendChild(arrow);
-
-          col.appendChild(link);
-          row.appendChild(col);
-        });
-
-        container.appendChild(row);
-      }
-    })
-    .catch(error => {
-      console.error("Error loading content:", error);
+      col.appendChild(link);
+      row.appendChild(col);
     });
-});
+
+    container.appendChild(row);
+  }
+}
 
 function createProcessNavigation(data) {
-
   const prevBtn = document.querySelector(".prev-session");
   const nextBtn = document.querySelector(".next-session");
-
   if (!prevBtn || !nextBtn) return;
 
   const params = new URLSearchParams(window.location.search);
@@ -220,41 +175,25 @@ function createProcessNavigation(data) {
     return;
   }
 
-  const currentIndex = author.sessions.findIndex(
-    session => session.link === currentProcess
-  );
-
+  const currentIndex = author.sessions.findIndex(s => s.link === currentProcess);
   if (currentIndex === -1) {
     prevBtn.style.display = "none";
     nextBtn.style.display = "none";
     return;
   }
 
-  // Hide both by default
   prevBtn.style.display = "none";
   nextBtn.style.display = "none";
 
-  // PREVIOUS
   if (currentIndex > 0) {
     const prevSession = author.sessions[currentIndex - 1];
-    prevBtn.href = `../html/processviewer.html?process=${prevSession.link}`;
+    prevBtn.href = root(`html/processviewer.html?process=${prevSession.link}`);
     prevBtn.style.display = "block";
   }
 
-  // NEXT
   if (currentIndex < author.sessions.length - 1) {
     const nextSession = author.sessions[currentIndex + 1];
-    nextBtn.href = `../html/processviewer.html?process=${nextSession.link}`;
+    nextBtn.href = root(`html/processviewer.html?process=${nextSession.link}`);
     nextBtn.style.display = "block";
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  fetch(root("authors.json"))
-    .then(res => res.json())
-    .then(data => {
-      createProcessNavigation(data);
-    })
-    .catch(err => console.error("JSON load error:", err));
-});
-
