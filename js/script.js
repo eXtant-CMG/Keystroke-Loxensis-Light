@@ -389,19 +389,27 @@ function jumpToStep(target) {
   }
 }
 
-setTimeout(function () {
-  const hasNotes = Array.from(document.querySelectorAll("b.notes"))
-    .some(el =>
-      Array.from(el.classList)
-        .some(c => c.startsWith("note") && c !== "notes")
-    );
-  const notesButton = document.getElementById("notesButton");
-  if (notesButton) {
+const observer = new MutationObserver(function(mutations, obs) {
+    const notesButton = document.getElementById("notesButton");
+    if (!notesButton) return; 
+
+    const hasNotes = Array.from(document.querySelectorAll("b.notes"))
+        .some(el =>
+            Array.from(el.classList)
+                .some(c => c.startsWith("note") && c !== "notes")
+        );
+
     if (!hasNotes) {
-      notesButton.classList.add("hidden");
+        notesButton.classList.add("hidden");
     }
-  }
-}, 500);
+
+    obs.disconnect();
+});
+
+observer.observe(document.body, {
+    childList: true, 
+    subtree: true     
+});
 
 const tooltip = document.createElement("div");
 tooltip.style.position = "absolute";
