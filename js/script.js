@@ -401,7 +401,7 @@ setTimeout(function () {
       notesButton.classList.add("hidden");
     }
   }
-}, 10);
+}, 500);
 
 const tooltip = document.createElement("div");
 tooltip.style.position = "absolute";
