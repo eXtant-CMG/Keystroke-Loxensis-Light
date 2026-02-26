@@ -1,11 +1,11 @@
 # Build Report
 
-Generated: 2026-02-26 08:36 UTC
+Generated: 2026-02-26 09:01 UTC
 
 ## Summary
 
-- Authors processed: **3**
-- XML files processed: **5**
+- Authors processed: **2**
+- XML files processed: **4**
 
 ## Missing Title
 ✓ None
@@ -17,4 +17,4 @@ Generated: 2026-02-26 08:36 UTC
 ✓ None
 
 ## Missing Description
-- xml/Bekius/Bekius_01_s01.xml
+✓ None

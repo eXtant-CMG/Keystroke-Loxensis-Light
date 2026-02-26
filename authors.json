@@ -1,17 +1,5 @@
 [
   {
-    "path": "Bekius",
-    "name": "Lamyk Bekius",
-    "title": "Bitcare",
-    "description": "",
-    "sessions": [
-      {
-        "name": "Session 1",
-        "link": "Bekius_01_s01"
-      }
-    ]
-  },
-  {
     "path": "Doe",
     "name": "Jane Doe",
     "title": "Digital writing, forever",
