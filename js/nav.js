@@ -1,3 +1,4 @@
+// Detect project root automatically
 function getSiteRoot() {
   const { origin, pathname } = window.location;
   if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
@@ -16,17 +17,17 @@ function root(path) {
   return new URL(path, SITE_ROOT).href;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+let authorsData = null;
 
+document.addEventListener("DOMContentLoaded", function () {
   fetch(root("authors.json"))
     .then(response => response.json())
     .then(data => {
+      authorsData = data;
       buildNav(data);
       buildProcessContainer(data);
-      createProcessNavigation(data);
     })
     .catch(error => console.error("Error loading authors.json:", error));
-
 });
 
 function buildNav(data) {
